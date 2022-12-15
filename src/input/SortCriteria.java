@@ -1,4 +1,4 @@
-package fileio;
+package input;
 
 public final class SortCriteria {
     private String rating;

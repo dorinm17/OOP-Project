@@ -1,4 +1,4 @@
-package fileio;
+package input;
 
 import java.util.ArrayList;
 
@@ -29,6 +29,7 @@ public final class ContainsCriteria {
     public String toString() {
         return "ContainsCriteria{"
                 + "actors=" + actors
+                + ", genre=" + genre
                 + '}';
     }
 }

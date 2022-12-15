@@ -1,4 +1,6 @@
-package fileio;
+package output;
+
+import input.MovieInput;
 
 import java.math.BigDecimal;
 
@@ -9,7 +11,11 @@ public final class MovieExtended extends MovieInput {
     private Double rating;
     private int numRatings;
 
-    public MovieExtended() {
+    public MovieExtended(final MovieInput movie) {
+        super(movie);
+        numLikes = 0;
+        rating = 0.00;
+        numRatings = 0;
     }
 
     public int getNumLikes() {

@@ -1,4 +1,4 @@
-package fileio;
+package input;
 
 import java.util.ArrayList;
 
@@ -11,6 +11,15 @@ public class MovieInput {
     private ArrayList<String> countriesBanned;
 
     public MovieInput() {
+    }
+
+    public MovieInput(final MovieInput movie) {
+        this.name = movie.getName();
+        this.year = movie.getYear();
+        this.duration = movie.getDuration();
+        this.genres = movie.getGenres();
+        this.actors = movie.getActors();
+        this.countriesBanned = movie.getCountriesBanned();
     }
 
     public final String getName() {

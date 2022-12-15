@@ -1,6 +1,7 @@
-package fileio;
+package output;
 
 import constants.Numbers;
+import input.UserInput;
 
 import java.util.ArrayList;
 
@@ -12,7 +13,8 @@ public final class UserExtended extends UserInput {
     private ArrayList<MovieExtended> likedMovies;
     private ArrayList<MovieExtended> ratedMovies;
 
-    public UserExtended() {
+    public UserExtended(final UserInput user) {
+        super(user);
         tokensCount = 0;
         numFreePremiumMovies = Numbers.PREM_FREE_MOV.getValue();
         purchasedMovies = new ArrayList<>();

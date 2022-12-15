@@ -1,6 +1,8 @@
 package constants;
 
 public enum Page {
+    UNAUTHENTICATED("unauthenticated"),
+    AUTHENTICATED("authenticated"),
     LOGIN("login"),
     REG("register"),
     MOVIES("movies"),

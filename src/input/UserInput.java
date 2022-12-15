@@ -1,9 +1,13 @@
-package fileio;
+package input;
 
 public class UserInput {
     private Credentials credentials;
 
     public UserInput() {
+    }
+
+    public UserInput(final UserInput user) {
+        this.credentials = user.credentials;
     }
 
     public final Credentials getCredentials() {

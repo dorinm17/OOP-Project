@@ -1,15 +1,15 @@
-package fileio;
+package output;
 
 import java.util.ArrayList;
 
-public final class Output {
+public final class OutputMessage {
     private String error;
-    private ArrayList<MovieExtended> currentMovieList;
+    private ArrayList<MovieExtended> currentMoviesList;
     private UserExtended currentUser;
 
-    public Output() {
+    public OutputMessage() {
         error = null;
-        currentMovieList = new ArrayList<>();
+        currentMoviesList = new ArrayList<>();
         currentUser = null;
     }
 
@@ -21,12 +21,12 @@ public final class Output {
         this.error = error;
     }
 
-    public ArrayList<MovieExtended> getCurrentMovieList() {
-        return currentMovieList;
+    public ArrayList<MovieExtended> getCurrentMoviesList() {
+        return currentMoviesList;
     }
 
-    public void setCurrentMovieList(final ArrayList<MovieExtended> currentMovieList) {
-        this.currentMovieList = currentMovieList;
+    public void setCurrentMoviesList(final ArrayList<MovieExtended> currentMoviesList) {
+        this.currentMoviesList = currentMoviesList;
     }
 
     public UserExtended getCurrentUser() {

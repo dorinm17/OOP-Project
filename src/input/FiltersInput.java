@@ -1,4 +1,4 @@
-package fileio;
+package input;
 
 public final class FiltersInput {
     private SortCriteria sort;
@@ -27,7 +27,7 @@ public final class FiltersInput {
     public String toString() {
         return "FiltersInput{"
                 + "sort=" + sort
-                + ", criteria=" + contains
+                + ", contains=" + contains
                 + '}';
     }
 }

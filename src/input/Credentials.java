@@ -1,4 +1,4 @@
-package fileio;
+package input;
 
 public final class Credentials {
     private String name;
@@ -57,7 +57,7 @@ public final class Credentials {
                 + ", password='" + password + '\''
                 + ", accountType='" + accountType + '\''
                 + ", country='" + country + '\''
-                + ", balance=" + balance
+                + ", balance='" + balance + '\''
                 + '}';
     }
 }

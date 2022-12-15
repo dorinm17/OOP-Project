@@ -1,7 +1,7 @@
 package constants;
 
 public enum Error {
-    ERR("error");
+    ERR("Error");
 
     private final String error;
 
