@@ -4,6 +4,11 @@ import output.OutputMessage;
 
 public interface Visitor {
     /**
+     * @return error status, current movie list and current user
+     */
+    OutputMessage getOutputMessage();
+
+    /**
      * Changes the current page
      */
     void visit(ChangePage changePage);
@@ -19,7 +24,12 @@ public interface Visitor {
     void visit(Register register);
 
     /**
-     * @return error status, current movie list and current user
+     * Searches for movies that start with the given string
      */
-    OutputMessage getOutputMessage();
+    void visit(Search search);
+
+    /**
+     * Sorts the movies by rating and duration
+     */
+    void visit(Filter addFavorite);
 }

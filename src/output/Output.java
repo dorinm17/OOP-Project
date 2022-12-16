@@ -10,6 +10,10 @@ import actions.Register;
 
 import actions.Visitor;
 
+import actions.Search;
+
+import actions.Filter;
+
 import constants.Feature;
 
 import constants.Page;
@@ -32,7 +36,7 @@ public final class Output {
     private final Input input;
     private String currentPage;
     private UserExtended currentUser;
-    private final ArrayList<MovieExtended> currentMoviesList;
+    private ArrayList<MovieExtended> currentMoviesList;
     private final ArrayList<UserExtended> users;
     private final ArrayList<MovieExtended> movies;
 
@@ -113,6 +117,10 @@ public final class Output {
         return currentMoviesList;
     }
 
+    public void setCurrentMoviesList(final ArrayList<MovieExtended> currentMoviesList) {
+        this.currentMoviesList = currentMoviesList;
+    }
+
     public ArrayList<UserExtended> getUsers() {
         return users;
     }
@@ -139,6 +147,12 @@ public final class Output {
             } else if (Feature.REG.getFeature().equals(action.getFeature())) {
                 ActionExtended register = new Register(action);
                 register.accept(actionVisitor);
+            } else if (Feature.SEARCH.getFeature().equals(action.getFeature())) {
+                ActionExtended search = new Search(action);
+                search.accept(actionVisitor);
+            } else if (Feature.FILTER.getFeature().equals(action.getFeature())) {
+                ActionExtended filter = new Filter(action);
+                filter.accept(actionVisitor);
             }
 
             if (actionVisitor.getOutputMessage() != null) {

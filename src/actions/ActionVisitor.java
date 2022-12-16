@@ -4,6 +4,11 @@ import constants.Page;
 
 import constants.Error;
 
+import constants.Sort;
+
+import input.ContainsCriteria;
+import input.SortCriteria;
+
 import input.UserInput;
 
 import output.MovieExtended;
@@ -14,7 +19,14 @@ import output.OutputMessage;
 
 import output.UserExtended;
 
+import java.util.ArrayList;
+
 public final class ActionVisitor implements Visitor {
+    @Override
+    public OutputMessage getOutputMessage() {
+        return outputMessage;
+    }
+
     private OutputMessage outputMessage;
     private final Output output;
 
@@ -96,17 +108,24 @@ public final class ActionVisitor implements Visitor {
             for (MovieExtended movie : output.getCurrentMoviesList()) {
                 if (movie.getName().equals(changePage.getMovie())) {
                     auxMovie = movie;
+                    break;
                 }
+            }
+
+            outputMessage = new OutputMessage();
+
+            if (auxMovie == null) {
+                outputMessage.setError(Error.ERR.getError());
+                return true;
             }
 
             output.getCurrentMoviesList().clear();
             output.getCurrentMoviesList().add(auxMovie);
-
-            outputMessage = new OutputMessage();
             outputMessage.setCurrentUser(output.getCurrentUser());
             outputMessage.setCurrentMoviesList(output.getCurrentMoviesList());
             return true;
         }
+
         return false;
     }
 
@@ -116,6 +135,7 @@ public final class ActionVisitor implements Visitor {
             output.setCurrentPage(changePage.getPage());
             return true;
         }
+
         return false;
     }
 
@@ -125,6 +145,7 @@ public final class ActionVisitor implements Visitor {
             output.getCurrentMoviesList().clear();
             return true;
         }
+
         return false;
     }
 
@@ -144,6 +165,7 @@ public final class ActionVisitor implements Visitor {
             outputMessage.setCurrentMoviesList(output.getCurrentMoviesList());
             return true;
         }
+
         return false;
     }
 
@@ -178,7 +200,7 @@ public final class ActionVisitor implements Visitor {
             }
         }
 
-        if (outputMessage.getCurrentUser() == null) {
+        if (output.getCurrentUser() == null) {
             outputMessage.setError(Error.ERR.getError());
             output.setCurrentPage(Page.UNAUTHENTICATED.getPage());
         }
@@ -190,8 +212,6 @@ public final class ActionVisitor implements Visitor {
 
         if (!Page.REG.getPage().equals(output.getCurrentPage())) {
             outputMessage.setError(Error.ERR.getError());
-            outputMessage.setCurrentUser(output.getCurrentUser());
-            outputMessage.setCurrentMoviesList(output.getCurrentMoviesList());
             return;
         }
 
@@ -214,7 +234,117 @@ public final class ActionVisitor implements Visitor {
     }
 
     @Override
-    public OutputMessage getOutputMessage() {
-        return outputMessage;
+    public void visit(final Search search) {
+        outputMessage = new OutputMessage();
+
+        if (!Page.MOVIES.getPage().equals(output.getCurrentPage())) {
+            outputMessage.setError(Error.ERR.getError());
+            return;
+        }
+
+        ArrayList<MovieExtended> auxMovies = new ArrayList<MovieExtended>();
+
+        for (MovieExtended movie : output.getCurrentMoviesList()) {
+            if (movie.getName().startsWith(search.getStartsWith())) {
+                auxMovies.add(movie);
+            }
+        }
+
+        output.setCurrentMoviesList(auxMovies);
+        outputMessage.setCurrentUser(output.getCurrentUser());
+        outputMessage.setCurrentMoviesList(output.getCurrentMoviesList());
+    }
+
+    @Override
+    public void visit(final Filter filter) {
+        outputMessage = new OutputMessage();
+
+        if (!Page.MOVIES.getPage().equals(output.getCurrentPage())) {
+            outputMessage.setError(Error.ERR.getError());
+            return;
+        }
+
+        containsCurrentMoviesList(filter);
+        sortCurrentMoviesList(filter);
+
+        outputMessage.setCurrentUser(output.getCurrentUser());
+        outputMessage.setCurrentMoviesList(output.getCurrentMoviesList());
+    }
+
+    private void containsCurrentMoviesList(final Filter filter) {
+        ContainsCriteria containsCriteria = filter.getFilters().getContains();
+
+        if (containsCriteria == null) {
+            return;
+        }
+
+        ArrayList<MovieExtended> auxMovies = new ArrayList<MovieExtended>();
+        for (MovieExtended movie : output.getCurrentMoviesList()) {
+            if (containsCriteria.getActors() != null) {
+                for (String actor : containsCriteria.getActors()) {
+                    if (movie.getActors().contains(actor)) {
+                        auxMovies.add(movie);
+                        break;
+                    }
+                }
+            }
+
+            // genre != null
+            for (String genre : containsCriteria.getGenre()) {
+                if (movie.getGenres().contains(genre)
+                        && !auxMovies.contains(movie)) {
+                    auxMovies.add(movie);
+                    break;
+                }
+            }
+        }
+
+        output.setCurrentMoviesList(auxMovies);
+    }
+
+    private void sortCurrentMoviesList(final Filter filter) {
+        SortCriteria sortCriteria = filter.getFilters().getSort();
+
+        if (sortCriteria == null) {
+            return;
+        }
+
+        String getDuration = sortCriteria.getDuration();
+        String getRating = sortCriteria.getRating();
+
+        if (getDuration != null && getRating != null) {
+            output.getCurrentMoviesList().sort((MovieExtended m1, MovieExtended m2) -> {
+                if (getDuration.equals(Sort.INC.getSort())) {
+                    if (m1.getDuration() == m2.getDuration()) {
+                        return Double.compare(m1.getRating(), m2.getRating());
+                    }
+                    return m1.getDuration() - m2.getDuration();
+                }
+                // duration: decreasing
+                if (m1.getDuration() == m2.getDuration()) {
+                    return Double.compare(m2.getRating(), m1.getRating());
+                }
+                return m2.getDuration() - m1.getDuration();
+            });
+            return;
+        }
+
+        if (getDuration != null) {
+            output.getCurrentMoviesList().sort((MovieExtended m1, MovieExtended m2) -> {
+                if (getDuration.equals(Sort.INC.getSort())) {
+                    return m1.getDuration() - m2.getDuration();
+                }
+                return m2.getDuration() - m1.getDuration();
+            });
+            return;
+        }
+
+        // rating != null
+        output.getCurrentMoviesList().sort((MovieExtended m1, MovieExtended m2) -> {
+            if (getRating.equals(Sort.INC.getSort())) {
+                return Double.compare(m1.getRating(), m2.getRating());
+            }
+            return Double.compare(m2.getRating(), m1.getRating());
+        });
     }
 }
