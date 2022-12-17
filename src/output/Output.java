@@ -14,6 +14,18 @@ import actions.Search;
 
 import actions.Filter;
 
+import actions.BuyPremAcc;
+
+import actions.BuyTokens;
+
+import actions.Purchase;
+
+import actions.Watch;
+
+import actions.Rate;
+
+import actions.Like;
+
 import constants.Feature;
 
 import constants.Page;
@@ -29,6 +41,7 @@ import input.MovieInput;
 import input.UserInput;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public final class Output {
     private static volatile Output instance = null;
@@ -39,6 +52,7 @@ public final class Output {
     private ArrayList<MovieExtended> currentMoviesList;
     private final ArrayList<UserExtended> users;
     private final ArrayList<MovieExtended> movies;
+    private final HashMap<MovieExtended, ArrayList<Integer>> moviesRatings;
 
     /**
      * Private constructor for singleton imposes the use of getInstance()
@@ -58,6 +72,12 @@ public final class Output {
 
         for (MovieInput movie : input.getMovies()) {
             movies.add(new MovieExtended(movie));
+        }
+
+        moviesRatings = new HashMap<>();
+
+        for (MovieExtended movie : movies) {
+            moviesRatings.put(movie, new ArrayList<>());
         }
     }
 
@@ -121,6 +141,10 @@ public final class Output {
         this.currentMoviesList = currentMoviesList;
     }
 
+    public HashMap<MovieExtended, ArrayList<Integer>> getMoviesRatings() {
+        return moviesRatings;
+    }
+
     public ArrayList<UserExtended> getUsers() {
         return users;
     }
@@ -128,6 +152,7 @@ public final class Output {
     public ArrayList<MovieExtended> getMovies() {
         return movies;
     }
+
 
     /**
      * Implements visitor pattern for the actions.
@@ -137,24 +162,33 @@ public final class Output {
 
         for (ActionInput action : input.getActions()) {
             actionVisitor = new ActionVisitor();
+            ActionExtended actionToPerform;
 
             if (Type.CHANGE.getType().equals(action.getType())) {
-                ActionExtended changePage = new ChangePage(action);
-                changePage.accept(actionVisitor);
+                actionToPerform = new ChangePage(action);
             } else if (Feature.LOGIN.getFeature().equals(action.getFeature())) {
-                ActionExtended login = new Login(action);
-                login.accept(actionVisitor);
+                actionToPerform = new Login(action);
             } else if (Feature.REG.getFeature().equals(action.getFeature())) {
-                ActionExtended register = new Register(action);
-                register.accept(actionVisitor);
+                actionToPerform = new Register(action);
             } else if (Feature.SEARCH.getFeature().equals(action.getFeature())) {
-                ActionExtended search = new Search(action);
-                search.accept(actionVisitor);
+                actionToPerform = new Search(action);
             } else if (Feature.FILTER.getFeature().equals(action.getFeature())) {
-                ActionExtended filter = new Filter(action);
-                filter.accept(actionVisitor);
+                actionToPerform = new Filter(action);
+            } else if (Feature.BUY_TOK.getFeature().equals(action.getFeature())) {
+                actionToPerform = new BuyTokens(action);
+            } else if (Feature.BUY_PREM_ACC.getFeature().equals(action.getFeature())) {
+                actionToPerform = new BuyPremAcc(action);
+            } else if (Feature.PURCHASE.getFeature().equals(action.getFeature())) {
+                actionToPerform = new Purchase(action);
+            } else if (Feature.WATCH.getFeature().equals(action.getFeature())) {
+                actionToPerform = new Watch(action);
+            } else if (Feature.LIKE.getFeature().equals(action.getFeature())) {
+                actionToPerform = new Like(action);
+            } else {
+                actionToPerform = new Rate(action);
             }
 
+            actionToPerform.accept(actionVisitor);
             if (actionVisitor.getOutputMessage() != null) {
                 output.add(actionVisitor.getOutputMessage());
             }

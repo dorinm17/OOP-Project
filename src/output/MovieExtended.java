@@ -18,6 +18,13 @@ public final class MovieExtended extends MovieInput {
         numRatings = 0;
     }
 
+    public MovieExtended(final MovieExtended movie) {
+        super(movie);
+        numLikes = movie.getNumLikes();
+        rating = movie.getRating();
+        numRatings = movie.getNumRatings();
+    }
+
     public int getNumLikes() {
         return numLikes;
     }
@@ -36,7 +43,7 @@ public final class MovieExtended extends MovieInput {
      * @param rating the average rating of the movie
      */
     public void setRating(final Double rating) {
-        BigDecimal bd = new BigDecimal(rating).setScale(2, RoundingMode.CEILING);
+        BigDecimal bd = new BigDecimal(rating).setScale(2, RoundingMode.HALF_UP);
         this.rating = bd.doubleValue();
     }
 

@@ -4,13 +4,13 @@ public enum AccountType {
     STD("standard"),
     PREM("premium");
 
-    private final String accountType;
+    private final String type;
 
     AccountType(final String accountType) {
-        this.accountType = accountType;
+        this.type = accountType;
     }
 
-    public String getAccountType() {
-        return accountType;
+    public String getType() {
+        return type;
     }
 }

@@ -7,7 +7,7 @@ public class UserInput {
     }
 
     public UserInput(final UserInput user) {
-        this.credentials = user.credentials;
+        this.credentials = new Credentials(user.credentials);
     }
 
     public final Credentials getCredentials() {

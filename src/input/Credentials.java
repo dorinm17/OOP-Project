@@ -10,6 +10,14 @@ public final class Credentials {
     public Credentials() {
     }
 
+    public Credentials(final Credentials credentials) {
+        this.name = credentials.name;
+        this.password = credentials.password;
+        this.accountType = credentials.accountType;
+        this.country = credentials.country;
+        this.balance = credentials.balance;
+    }
+
     public String getName() {
         return name;
     }

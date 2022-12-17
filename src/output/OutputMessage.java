@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public final class OutputMessage {
     private String error;
-    private ArrayList<MovieExtended> currentMoviesList;
+    private final ArrayList<MovieExtended> currentMoviesList;
     private UserExtended currentUser;
 
     public OutputMessage() {
@@ -25,8 +25,11 @@ public final class OutputMessage {
         return currentMoviesList;
     }
 
+    /**
+     * Deep copy setter for currentMoviesList.
+     */
     public void setCurrentMoviesList(final ArrayList<MovieExtended> currentMoviesList) {
-        this.currentMoviesList = currentMoviesList;
+        this.currentMoviesList.addAll(currentMoviesList);
     }
 
     public UserExtended getCurrentUser() {

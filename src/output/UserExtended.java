@@ -23,6 +23,32 @@ public final class UserExtended extends UserInput {
         ratedMovies = new ArrayList<>();
     }
 
+    public UserExtended(final UserExtended user) {
+        super(user);
+        tokensCount = user.getTokensCount();
+        numFreePremiumMovies = user.getNumFreePremiumMovies();
+        purchasedMovies = new ArrayList<>();
+        watchedMovies = new ArrayList<>();
+        likedMovies = new ArrayList<>();
+        ratedMovies = new ArrayList<>();
+
+        for (MovieExtended movie : user.getPurchasedMovies()) {
+            purchasedMovies.add(new MovieExtended(movie));
+        }
+
+        for (MovieExtended movie : user.getWatchedMovies()) {
+            watchedMovies.add(new MovieExtended(movie));
+        }
+
+        for (MovieExtended movie : user.getLikedMovies()) {
+            likedMovies.add(new MovieExtended(movie));
+        }
+
+        for (MovieExtended movie : user.getRatedMovies()) {
+            ratedMovies.add(new MovieExtended(movie));
+        }
+    }
+
     public int getTokensCount() {
         return tokensCount;
     }

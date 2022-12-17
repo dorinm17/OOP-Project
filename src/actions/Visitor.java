@@ -32,4 +32,34 @@ public interface Visitor {
      * Sorts the movies by rating and duration
      */
     void visit(Filter addFavorite);
+
+    /**
+     * User upgrades his account to premium
+     */
+    void visit(BuyPremAcc buyPremAcc);
+
+    /**
+     * User buys virtual tokens
+     */
+    void visit(BuyTokens buyTokens);
+
+    /**
+     * User purchases the selected movie
+     */
+    void visit(Purchase purchase);
+
+    /**
+     * User watches the selected movie
+     */
+    void visit(Watch watch);
+
+    /**
+     * User likes the selected movie
+     */
+    void visit(Like like);
+
+    /**
+     * User rates the selected movie
+     */
+    void visit(Rate rate);
 }
