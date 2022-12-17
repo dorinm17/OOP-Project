@@ -42,15 +42,18 @@ import input.UserInput;
 
 import java.util.ArrayList;
 
+import java.util.Collections;
 import java.util.HashMap;
+
+import java.util.List;
 
 public final class Output {
     private static volatile Output instance = null;
-    private final ArrayList<OutputMessage> output;
+    private final List<OutputMessage> output;
     private final Input input;
     private String currentPage;
     private UserExtended currentUser;
-    private ArrayList<MovieExtended> currentMoviesList;
+    private List<MovieExtended> currentMoviesList;
     private final ArrayList<UserExtended> users;
     private final ArrayList<MovieExtended> movies;
     private final HashMap<MovieExtended, ArrayList<Integer>> moviesRatings;
@@ -59,11 +62,11 @@ public final class Output {
      * Private constructor for singleton imposes the use of getInstance()
      */
     private Output(final Input input) {
-        output = new ArrayList<>();
+        output = Collections.synchronizedList(new ArrayList<>());
         this.input = input;
         currentPage = Page.UNAUTHENTICATED.getPage();
         currentUser = null;
-        currentMoviesList = new ArrayList<>();
+        currentMoviesList = Collections.synchronizedList(new ArrayList<>());
         users = new ArrayList<>();
         movies = new ArrayList<>();
 
@@ -110,7 +113,7 @@ public final class Output {
         instance = null;
     }
 
-    public ArrayList<OutputMessage> getOutput() {
+    public List<OutputMessage> getOutput() {
         return output;
     }
 
@@ -134,7 +137,7 @@ public final class Output {
         this.currentUser = currentUser;
     }
 
-    public ArrayList<MovieExtended> getCurrentMoviesList() {
+    public List<MovieExtended> getCurrentMoviesList() {
         return currentMoviesList;
     }
 

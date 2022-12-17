@@ -2,14 +2,17 @@ package output;
 
 import java.util.ArrayList;
 
+import java.util.Collections;
+import java.util.List;
+
 public final class OutputMessage {
     private String error;
-    private final ArrayList<MovieExtended> currentMoviesList;
+    private final List<MovieExtended> currentMoviesList;
     private UserExtended currentUser;
 
     public OutputMessage() {
         error = null;
-        currentMoviesList = new ArrayList<>();
+        currentMoviesList = Collections.synchronizedList(new ArrayList<>());
         currentUser = null;
     }
 
@@ -21,14 +24,14 @@ public final class OutputMessage {
         this.error = error;
     }
 
-    public ArrayList<MovieExtended> getCurrentMoviesList() {
+    public List<MovieExtended> getCurrentMoviesList() {
         return currentMoviesList;
     }
 
     /**
      * Deep copy setter for currentMoviesList.
      */
-    public void setCurrentMoviesList(final ArrayList<MovieExtended> currentMoviesList) {
+    public void setCurrentMoviesList(final List<MovieExtended> currentMoviesList) {
         this.currentMoviesList.addAll(currentMoviesList);
     }
 
