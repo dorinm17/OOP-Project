@@ -41,6 +41,7 @@ import input.MovieInput;
 import input.UserInput;
 
 import java.util.ArrayList;
+
 import java.util.HashMap;
 
 public final class Output {
@@ -162,33 +163,42 @@ public final class Output {
 
         for (ActionInput action : input.getActions()) {
             actionVisitor = new ActionVisitor();
-            ActionExtended actionToPerform;
 
             if (Type.CHANGE.getType().equals(action.getType())) {
-                actionToPerform = new ChangePage(action);
+                ActionExtended changePage = new ChangePage(action);
+                changePage.accept(actionVisitor);
             } else if (Feature.LOGIN.getFeature().equals(action.getFeature())) {
-                actionToPerform = new Login(action);
+                ActionExtended login = new Login(action);
+                login.accept(actionVisitor);
             } else if (Feature.REG.getFeature().equals(action.getFeature())) {
-                actionToPerform = new Register(action);
+                ActionExtended register = new Register(action);
+                register.accept(actionVisitor);
             } else if (Feature.SEARCH.getFeature().equals(action.getFeature())) {
-                actionToPerform = new Search(action);
+                ActionExtended search = new Search(action);
+                search.accept(actionVisitor);
             } else if (Feature.FILTER.getFeature().equals(action.getFeature())) {
-                actionToPerform = new Filter(action);
+                ActionExtended filter = new Filter(action);
+                filter.accept(actionVisitor);
             } else if (Feature.BUY_TOK.getFeature().equals(action.getFeature())) {
-                actionToPerform = new BuyTokens(action);
+                ActionExtended buyTokens = new BuyTokens(action);
+                buyTokens.accept(actionVisitor);
             } else if (Feature.BUY_PREM_ACC.getFeature().equals(action.getFeature())) {
-                actionToPerform = new BuyPremAcc(action);
+                ActionExtended buyPremAcc = new BuyPremAcc(action);
+                buyPremAcc.accept(actionVisitor);
             } else if (Feature.PURCHASE.getFeature().equals(action.getFeature())) {
-                actionToPerform = new Purchase(action);
+                ActionExtended purchase = new Purchase(action);
+                purchase.accept(actionVisitor);
             } else if (Feature.WATCH.getFeature().equals(action.getFeature())) {
-                actionToPerform = new Watch(action);
+                ActionExtended watch = new Watch(action);
+                watch.accept(actionVisitor);
             } else if (Feature.LIKE.getFeature().equals(action.getFeature())) {
-                actionToPerform = new Like(action);
+                ActionExtended like = new Like(action);
+                like.accept(actionVisitor);
             } else {
-                actionToPerform = new Rate(action);
+                ActionExtended rate = new Rate(action);
+                rate.accept(actionVisitor);
             }
 
-            actionToPerform.accept(actionVisitor);
             if (actionVisitor.getOutputMessage() != null) {
                 output.add(actionVisitor.getOutputMessage());
             }

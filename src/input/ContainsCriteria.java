@@ -3,8 +3,8 @@ package input;
 import java.util.ArrayList;
 
 public final class ContainsCriteria {
-    private ArrayList<String> actors;
-    private ArrayList<String> genre;
+    private ArrayList<String> actors = new ArrayList<>();
+    private ArrayList<String> genre = new ArrayList<>();
 
     public ContainsCriteria() {
     }
