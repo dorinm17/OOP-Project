@@ -301,7 +301,7 @@ public final class ActionVisitor implements Visitor {
         ArrayList<MovieExtended> auxMovies = new ArrayList<>(output.getCurrentMoviesList());
 
         if (containsCriteria.getActors() != null
-               && containsCriteria.getGenre() != null) {
+                && containsCriteria.getGenre() != null) {
             for (MovieExtended movie : auxMovies) {
                 for (String actor : containsCriteria.getActors()) {
                     if (!movie.getActors().contains(actor)) {
