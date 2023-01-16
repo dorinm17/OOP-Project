@@ -33,7 +33,16 @@ which page they are at the moment:
   ratings;
 - *buy tokens* - the user can buy tokens;
 - *buy premium account* - the user can upgrade to a premium account, that
-  allows them to watch 15 movies for free;
+  allows them to watch 15 movies for free and get a movie recommendation;
+- *subscribe* - the user can subscribe to a movie genre, that will notify them
+  when a new movie that belongs to the genre is added to the database;
+- *back* - the logged-in user can go back to the previous page;
+
+Additionally, the administrator can add or remove new movies to the database at
+any point in time. Users subscribed to a genre will be notified when a new movie
+that belongs to the genre is added to the database. Also, users that have
+previously purchased a movie that is being removed from the database will be
+notified and will be refunded.
 
 NB:
 
@@ -53,10 +62,22 @@ the separation of the logic from the data and the action classes are not
 modified.
 
 For storing current data in the program, I used several collections: ArrayList,
-Hashmap and LinkedHashMap. The hashmap was useful for memorising all the
-ratings for every movie. The LinkedHashMap, together with deep copy
-constructors and synchronized variants for lists, were used for dealing with
+Hashmap, LinkedHashMap and ArrayDequeue. The hashmap is useful for memorising
+all the ratings for every movie. The LinkedHashMap, together with deep copy
+constructors and synchronized variants for lists, are used for dealing with
 multithreading issues encountered during the implementation of the project.
+The ArrayDequeue acts as a stack that stores the pages the user navigates
+through and is useful for the back action.
+
+After careful thought as to how to notify users everytime a new change is being
+made to the database, I decided to use the Observer pattern. The Observable is
+the suggestively named NotificationCenter class and the Observers are none
+others than the users themselves (the UserExtended class). In order to manage
+all the different aspects users have to be notified of and since users shall be
+notified only of the changes important to them, I chose to implement a Hashmap
+that retains multiple Observable objects, each one corresponding to a different
+String (the name of the genre for the addition of a movie to the database and
+the name of the movie for the removal of a movie from the database).
 
 ## Bibliography
 
