@@ -9,6 +9,11 @@ public interface Visitor {
     OutputMessage getOutputMessage();
 
     /**
+     * Return the logged-in user to the previous page he was on
+     */
+    void visit(Back back);
+
+    /**
      * Changes the current page
      */
     void visit(ChangePage changePage);

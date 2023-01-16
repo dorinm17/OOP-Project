@@ -1,9 +1,12 @@
 package output;
 
 import constants.Numbers;
+
 import input.UserInput;
 
 import java.util.ArrayList;
+
+import java.util.List;
 
 public final class UserExtended extends UserInput {
     private int tokensCount;
@@ -12,6 +15,7 @@ public final class UserExtended extends UserInput {
     private ArrayList<MovieExtended> watchedMovies;
     private ArrayList<MovieExtended> likedMovies;
     private ArrayList<MovieExtended> ratedMovies;
+    private final List<Notification> notifications;
 
     public UserExtended(final UserInput user) {
         super(user);
@@ -21,6 +25,7 @@ public final class UserExtended extends UserInput {
         watchedMovies = new ArrayList<>();
         likedMovies = new ArrayList<>();
         ratedMovies = new ArrayList<>();
+        notifications = new ArrayList<>();
     }
 
     public UserExtended(final UserExtended user) {
@@ -31,6 +36,7 @@ public final class UserExtended extends UserInput {
         watchedMovies = new ArrayList<>();
         likedMovies = new ArrayList<>();
         ratedMovies = new ArrayList<>();
+        notifications = new ArrayList<>();
 
         for (MovieExtended movie : user.getPurchasedMovies()) {
             purchasedMovies.add(new MovieExtended(movie));
@@ -46,6 +52,10 @@ public final class UserExtended extends UserInput {
 
         for (MovieExtended movie : user.getRatedMovies()) {
             ratedMovies.add(new MovieExtended(movie));
+        }
+
+        for (Notification notification : user.getNotifications()) {
+            notifications.add(new Notification(notification));
         }
     }
 
@@ -95,5 +105,9 @@ public final class UserExtended extends UserInput {
 
     public void setRatedMovies(final ArrayList<MovieExtended> ratedMovies) {
         this.ratedMovies = ratedMovies;
+    }
+
+    public List<Notification> getNotifications() {
+        return notifications;
     }
 }

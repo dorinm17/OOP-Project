@@ -2,7 +2,8 @@ package constants;
 
 public enum Type {
     ON("on page"),
-    CHANGE("change page");
+    CHANGE("change page"),
+    BACK("back");
 
     private final String type;
 

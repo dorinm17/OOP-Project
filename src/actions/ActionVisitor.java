@@ -26,6 +26,8 @@ import output.UserExtended;
 
 import java.util.ArrayList;
 
+import java.util.Deque;
+
 import java.util.LinkedHashSet;
 
 public final class ActionVisitor implements Visitor {
@@ -40,6 +42,19 @@ public final class ActionVisitor implements Visitor {
     @Override
     public OutputMessage getOutputMessage() {
         return outputMessage;
+    }
+
+    @Override
+    public void visit(final Back back) {
+        Deque<String> previousPages = output.getPreviousPages();
+        if (previousPages.size() > 0) {
+            previousPages.pop();
+            String previousPage = previousPages.peek();
+            output.setCurrentPage(previousPage);
+        } else {
+            outputMessage = new OutputMessage();
+            outputMessage.setError(Error.ERR.getError());
+        }
     }
 
     @Override
@@ -133,8 +148,10 @@ public final class ActionVisitor implements Visitor {
                     }
                 }
 
-                return true;
+                return false;
             }
+
+            output.getPreviousPages().push(output.getCurrentPage());
 
             output.getCurrentMoviesList().clear();
             output.getCurrentMoviesList().add(auxMovie);
@@ -143,6 +160,7 @@ public final class ActionVisitor implements Visitor {
             outputMessage.getCurrentMoviesList().add(copyMovie);
             UserExtended copyUser = new UserExtended(output.getCurrentUser());
             outputMessage.setCurrentUser(copyUser);
+
             return true;
         }
 
@@ -161,6 +179,7 @@ public final class ActionVisitor implements Visitor {
 
     private boolean checkUpgrades(final ChangePage changePage) {
         if (Page.UPGRADES.getPage().equals(changePage.getPage())) {
+            output.getPreviousPages().push(output.getCurrentPage());
             output.setCurrentPage(changePage.getPage());
             output.getCurrentMoviesList().clear();
             return true;
@@ -185,6 +204,7 @@ public final class ActionVisitor implements Visitor {
 
             UserExtended auxUser = new UserExtended(output.getCurrentUser());
             outputMessage.setCurrentUser(auxUser);
+            output.getPreviousPages().push(output.getCurrentPage());
             output.setCurrentPage(changePage.getPage());
             return true;
         }
@@ -197,6 +217,7 @@ public final class ActionVisitor implements Visitor {
             output.setCurrentPage(Page.UNAUTHENTICATED.getPage());
             output.setCurrentUser(null);
             output.getCurrentMoviesList().clear();
+            output.getPreviousPages().clear();
             return true;
         }
 
@@ -561,8 +582,7 @@ public final class ActionVisitor implements Visitor {
             outputMessage.setError(Error.ERR.getError());
             return;
         }
-
-        if (rate.getRate() < Numbers.MIN_RATE.getValue()
+            if (rate.getRate() < Numbers.MIN_RATE.getValue()
                 || rate.getRate() > Numbers.MAX_RATE.getValue()) {
             outputMessage.setError(Error.ERR.getError());
             return;
