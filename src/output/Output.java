@@ -28,11 +28,23 @@ import actions.Like;
 
 import actions.Back;
 
-import constants.Feature;
+import actions.DatabaseAdd;
 
-import constants.Page;
+import actions.DatabaseDelete;
+
+import actions.Subscribe;
+
+import actions.NotificationCenter;
+
+import constants.AccountType;
 
 import constants.Type;
+
+import constants.Feature;
+
+import constants.Notify;
+
+import constants.Page;
 
 import input.ActionInput;
 
@@ -44,17 +56,17 @@ import input.UserInput;
 
 import java.util.ArrayList;
 
-import java.util.Collections;
+import java.util.List;
+
+import java.util.Map;
 
 import java.util.HashMap;
 
-import java.util.List;
+import java.util.Deque;
 
 import java.util.ArrayDeque;
 
-import java.util.Deque;
-
-import java.util.Map;
+import java.util.Collections;
 
 public final class Output {
     private static volatile Output instance = null;
@@ -67,6 +79,7 @@ public final class Output {
     private final ArrayList<MovieExtended> movies;
     private final Map<MovieExtended, ArrayList<Integer>> moviesRatings;
     private final Deque<String> previousPages;
+    private final Map<String, NotificationCenter> subscriptions;
 
     /**
      * Private constructor for singleton imposes the use of getInstance()
@@ -79,6 +92,9 @@ public final class Output {
         currentMoviesList = Collections.synchronizedList(new ArrayList<>());
         users = new ArrayList<>();
         movies = new ArrayList<>();
+        moviesRatings = new HashMap<>();
+        previousPages = new ArrayDeque<>();
+        subscriptions = new HashMap<>();
 
         for (UserInput user : input.getUsers()) {
             users.add(new UserExtended(user));
@@ -88,13 +104,9 @@ public final class Output {
             movies.add(new MovieExtended(movie));
         }
 
-        moviesRatings = new HashMap<>();
-
         for (MovieExtended movie : movies) {
             moviesRatings.put(movie, new ArrayList<>());
         }
-
-        previousPages = new ArrayDeque<>();
     }
 
     /**
@@ -173,6 +185,10 @@ public final class Output {
         return previousPages;
     }
 
+    public Map<String, NotificationCenter> getSubscriptions() {
+        return subscriptions;
+    }
+
     /**
      * Implements visitor pattern for the actions.
      */
@@ -205,14 +221,32 @@ public final class Output {
                 actionExtended = new Watch(action);
             } else if (Feature.LIKE.getFeature().equals(action.getFeature())) {
                 actionExtended = new Like(action);
-            } else {
+            } else if (Feature.RATE.getFeature().equals(action.getFeature())) {
                 actionExtended = new Rate(action);
+            } else if (Feature.SUBSCRIBE.getFeature().equals(action.getFeature())) {
+                actionExtended = new Subscribe(action);
+            } else if (Feature.ADD.getFeature().equals(action.getFeature())) {
+                actionExtended = new DatabaseAdd(action);
+            } else {
+                actionExtended = new DatabaseDelete(action);
             }
 
             actionExtended.accept(actionVisitor);
 
             if (actionVisitor.getOutputMessage() != null) {
                 output.add(actionVisitor.getOutputMessage());
+            }
+        }
+
+        if (currentUser != null) {
+            if (currentUser.getCredentials().getAccountType().equals(
+                    AccountType.PREM.getType())) {
+                OutputMessage outputMessage = new OutputMessage();
+                currentUser.getNotifications().add(new Notification(
+                        Notify.NO_RECOMMENDATION.getNotify(), Notify.RECOMMENDATION.getNotify()));
+                outputMessage.setCurrentUser(currentUser);
+                outputMessage.setCurrentMoviesList(null);
+                output.add(outputMessage);
             }
         }
     }

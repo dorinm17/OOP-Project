@@ -1,14 +1,16 @@
 package actions;
 
+import constants.AccountType;
+
+import constants.Notify;
+
 import constants.Error;
+
+import constants.Sort;
 
 import constants.Numbers;
 
 import constants.Page;
-
-import constants.Sort;
-
-import constants.AccountType;
 
 import input.ContainsCriteria;
 
@@ -18,11 +20,13 @@ import input.UserInput;
 
 import output.MovieExtended;
 
-import output.Output;
-
 import output.OutputMessage;
 
+import output.Output;
+
 import output.UserExtended;
+
+import output.Notification;
 
 import java.util.ArrayList;
 
@@ -48,9 +52,9 @@ public final class ActionVisitor implements Visitor {
     public void visit(final Back back) {
         Deque<String> previousPages = output.getPreviousPages();
         if (previousPages.size() > 0) {
-            previousPages.pop();
             String previousPage = previousPages.peek();
             output.setCurrentPage(previousPage);
+            previousPages.pop();
         } else {
             outputMessage = new OutputMessage();
             outputMessage.setError(Error.ERR.getError());
@@ -214,10 +218,20 @@ public final class ActionVisitor implements Visitor {
 
     private boolean checkLogout(final ChangePage changePage) {
         if (Page.LOGOUT.getPage().equals(changePage.getPage())) {
+            if (output.getCurrentUser().getCredentials().getAccountType().equals(
+                    AccountType.PREM.getType())) {
+                OutputMessage outputMessage = new OutputMessage();
+                output.getCurrentUser().getNotifications().add(new Notification(
+                        Notify.NO_RECOMMENDATION.getNotify(), Notify.RECOMMENDATION.getNotify()));
+                outputMessage.setCurrentMoviesList(null);
+                outputMessage.setCurrentUser(output.getCurrentUser());
+            }
+
             output.setCurrentPage(Page.UNAUTHENTICATED.getPage());
             output.setCurrentUser(null);
             output.getCurrentMoviesList().clear();
             output.getPreviousPages().clear();
+
             return true;
         }
 
@@ -481,10 +495,17 @@ public final class ActionVisitor implements Visitor {
             return;
         }
 
+        String currentMovieName = output.getCurrentMoviesList().get(0).getName();
         if (currentUser.getCredentials().getAccountType().equals(AccountType.PREM.getType())
                 && currentUser.getNumFreePremiumMovies() > 0) {
             currentUser.setNumFreePremiumMovies(currentUser.getNumFreePremiumMovies() - 1);
             updateCurrentUser(currentUser);
+
+            if (!output.getSubscriptions().containsKey(currentMovieName)) {
+                output.getSubscriptions().put(currentMovieName, new NotificationCenter());
+            }
+
+            output.getSubscriptions().get(currentMovieName).addObserver(currentUser);
             return;
         }
 
@@ -492,6 +513,11 @@ public final class ActionVisitor implements Visitor {
             currentUser.setTokensCount(currentUser.getTokensCount()
                     - Numbers.MOVIE_COST.getValue());
             updateCurrentUser(currentUser);
+
+            if (!output.getSubscriptions().containsKey(currentMovieName)) {
+                output.getSubscriptions().put(currentMovieName, new NotificationCenter());
+            }
+            output.getSubscriptions().get(currentMovieName).addObserver(currentUser);
             return;
         }
 
@@ -582,7 +608,7 @@ public final class ActionVisitor implements Visitor {
             outputMessage.setError(Error.ERR.getError());
             return;
         }
-            if (rate.getRate() < Numbers.MIN_RATE.getValue()
+        if (rate.getRate() < Numbers.MIN_RATE.getValue()
                 || rate.getRate() > Numbers.MAX_RATE.getValue()) {
             outputMessage.setError(Error.ERR.getError());
             return;
@@ -609,5 +635,76 @@ public final class ActionVisitor implements Visitor {
         }
 
         outputMessage.setError(Error.ERR.getError());
+    }
+
+    @Override
+    public void visit(final Subscribe subscribe) {
+        if (!Page.DETAILS.getPage().equals(output.getCurrentPage())) {
+            outputMessage = new OutputMessage();
+            outputMessage.setError(Error.ERR.getError());
+            return;
+        }
+
+        UserExtended currentUser = output.getCurrentUser();
+        String subscribedGenre = subscribe.getSubscribedGenre();
+
+        if (!output.getCurrentMoviesList().get(0).getGenres().contains(subscribedGenre)) {
+            outputMessage = new OutputMessage();
+            outputMessage.setError(Error.ERR.getError());
+            return;
+        }
+
+        if (!output.getSubscriptions().containsKey(subscribedGenre)) {
+            output.getSubscriptions().put(subscribedGenre, new NotificationCenter());
+            output.getSubscriptions().get(subscribedGenre).addObserver(currentUser);
+        } else if (!output.getSubscriptions().get(subscribedGenre).containsObserver(currentUser)) {
+            output.getSubscriptions().get(subscribedGenre).addObserver(currentUser);
+        } else {
+            outputMessage = new OutputMessage();
+            outputMessage.setError(Error.ERR.getError());
+        }
+    }
+
+    @Override
+    public void visit(final DatabaseAdd databaseAdd) {
+        for (MovieExtended movie : output.getMovies()) {
+            if (movie.getName().equals(databaseAdd.getAddedMovie().getName())) {
+                outputMessage = new OutputMessage();
+                outputMessage.setError(Error.ERR.getError());
+                return;
+            }
+        }
+
+        MovieExtended addedMovie = new MovieExtended(databaseAdd.getAddedMovie());
+        output.getMovies().add(addedMovie);
+
+        for (String genre : addedMovie.getGenres()) {
+            if (output.getSubscriptions().containsKey(genre)) {
+                output.getSubscriptions().get(genre).setNotifications(addedMovie);
+                return;
+            }
+        }
+    }
+
+    @Override
+    public void visit(final DatabaseDelete databaseDelete) {
+        boolean found = false;
+        for (MovieExtended movie : output.getMovies()) {
+            if (movie.getName().equals(databaseDelete.getDeletedMovie())) {
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            outputMessage = new OutputMessage();
+            outputMessage.setError(Error.ERR.getError());
+            return;
+        }
+
+        if (output.getSubscriptions().containsKey(databaseDelete.getDeletedMovie())) {
+            output.getSubscriptions().get(databaseDelete.getDeletedMovie()).setNotifications(
+                    databaseDelete.getDeletedMovie());
+        }
     }
 }

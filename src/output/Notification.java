@@ -14,6 +14,11 @@ public final class Notification {
         message = notification.getMessage();
     }
 
+    public Notification(final String movieName, final String message) {
+        this.movieName = movieName;
+        this.message = message;
+    }
+
     public String getMovieName() {
         return movieName;
     }

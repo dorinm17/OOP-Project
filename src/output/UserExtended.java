@@ -1,5 +1,9 @@
 package output;
 
+import constants.AccountType;
+
+import constants.Notify;
+
 import constants.Numbers;
 
 import input.UserInput;
@@ -15,7 +19,7 @@ public final class UserExtended extends UserInput {
     private ArrayList<MovieExtended> watchedMovies;
     private ArrayList<MovieExtended> likedMovies;
     private ArrayList<MovieExtended> ratedMovies;
-    private final List<Notification> notifications;
+    private List<Notification> notifications;
 
     public UserExtended(final UserInput user) {
         super(user);
@@ -56,6 +60,56 @@ public final class UserExtended extends UserInput {
 
         for (Notification notification : user.getNotifications()) {
             notifications.add(new Notification(notification));
+        }
+    }
+
+    /**
+     * Adds a new notification that a movie has been added to the database
+     */
+    public void update(final MovieExtended addedMovie) {
+        if (!addedMovie.getCountriesBanned().contains(this.getCredentials().getCountry())) {
+            notifications.add(new Notification(addedMovie.getName(), Notify.ADD.getNotify()));
+        }
+    }
+
+    /**
+     * Adds a new notification that a movie has been removed from the database
+     */
+    public void update(final String deletedMovie) {
+        for (MovieExtended movie : purchasedMovies) {
+            if (movie.getName().equals(deletedMovie)) {
+                purchasedMovies.remove(movie);
+                break;
+            }
+        }
+
+        notifications.add(new Notification(deletedMovie, Notify.DELETE.getNotify()));
+
+        if (this.getCredentials().getAccountType().equals(AccountType.PREM.getType())) {
+            numFreePremiumMovies++;
+        } else {
+            tokensCount += Numbers.MOVIE_COST.getValue();
+        }
+
+        for (MovieExtended movie : watchedMovies) {
+            if (movie.getName().equals(deletedMovie)) {
+                watchedMovies.remove(movie);
+                break;
+            }
+        }
+
+        for (MovieExtended movie : likedMovies) {
+            if (movie.getName().equals(deletedMovie)) {
+                likedMovies.remove(movie);
+                break;
+            }
+        }
+
+        for (MovieExtended movie : ratedMovies) {
+            if (movie.getName().equals(deletedMovie)) {
+                ratedMovies.remove(movie);
+                break;
+            }
         }
     }
 
@@ -109,5 +163,9 @@ public final class UserExtended extends UserInput {
 
     public List<Notification> getNotifications() {
         return notifications;
+    }
+
+    public void setNotifications(final List<Notification> notifications) {
+        this.notifications = notifications;
     }
 }

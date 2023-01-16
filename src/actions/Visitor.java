@@ -67,4 +67,19 @@ public interface Visitor {
      * User rates the selected movie
      */
     void visit(Rate rate);
+
+    /**
+     * User subscribes to the selected movie genre
+     */
+    void visit(Subscribe subscribe);
+
+    /**
+     * Movie added to the database
+     */
+    void visit(DatabaseAdd databaseAdd);
+
+    /**
+     * Movie removed from the database
+     */
+    void visit(DatabaseDelete databaseDelete);
 }

@@ -1,2 +1,4 @@
 Starting audit...
+[ERROR] C:\Users\dorin\Desktop\proiect1\.\src\actions\ActionVisitor.java:223:31: 'outputMessage' hides a field. [HiddenField]
 Audit done.
+Checkstyle ends with 1 errors.

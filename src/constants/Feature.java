@@ -10,7 +10,10 @@ public enum Feature {
     RATE("rate"),
     LIKE("like"),
     BUY_TOK("buy tokens"),
-    BUY_PREM_ACC("buy premium account");
+    BUY_PREM_ACC("buy premium account"),
+    SUBSCRIBE("subscribe"),
+    ADD("add"),
+    DELETE("delete");
 
     private final String feature;
 

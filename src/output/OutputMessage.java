@@ -8,7 +8,7 @@ import java.util.List;
 
 public final class OutputMessage {
     private String error;
-    private final List<MovieExtended> currentMoviesList;
+    private List<MovieExtended> currentMoviesList;
     private UserExtended currentUser;
 
     public OutputMessage() {
@@ -33,6 +33,11 @@ public final class OutputMessage {
      * Deep copy setter for currentMoviesList.
      */
     public void setCurrentMoviesList(final List<MovieExtended> currentMoviesList) {
+        if (currentMoviesList == null) {
+            this.currentMoviesList = null;
+            return;
+        }
+
         this.currentMoviesList.addAll(currentMoviesList);
     }
 

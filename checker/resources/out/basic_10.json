@@ -46,7 +46,7 @@
     "year" : "2006",
     "duration" : 134,
     "genres" : [ "Thriller", "Western", "Mystery" ],
-    "actors" : [ "Hailey Evequot", "Fenelia Maryott", "Gloriane Haughton", "Evvie Asbery", "Camey Ingold" ],
+    "actors" : [ "Hailey Evequot", "Fenelia Maryott", "Gloriane Haughton", "Evvie Asbery" ],
     "countriesBanned" : [ "Indonesia", "China", "India" ],
     "numLikes" : 0,
     "rating" : 0.0,
@@ -86,7 +86,7 @@
     "year" : "2003",
     "duration" : 106,
     "genres" : [ "Fantasy", "Thriller", "Mystery" ],
-    "actors" : [ "Holly Sandbrook", "Phyllys Lindsell", "Bendick Bointon", "Dani Duigenan", "Camey Ingold" ],
+    "actors" : [ "Holly Sandbrook", "Phyllys Lindsell", "Bendick Bointon", "Dani Duigenan" ],
     "countriesBanned" : [ "Indonesia", "Brazil", "Uganda" ],
     "numLikes" : 0,
     "rating" : 0.0,
@@ -175,7 +175,7 @@
     "name" : "The Well-Digger's Daughter",
     "year" : "1994",
     "duration" : 141,
-    "genres" : [ "Comedy", "Mystery", "Drama" ],
+    "genres" : [ "Crime", "Mystery", "Drama" ],
     "actors" : [ "Fallon Sutcliff", "Maribeth Penas", "Codee Hooks", "Rubia Cotilard" ],
     "countriesBanned" : [ "China", "South Africa", "India" ],
     "numLikes" : 0,
@@ -208,9 +208,9 @@
       "password" : "corega",
       "accountType" : "standard",
       "country" : "Japan",
-      "balance" : "50"
+      "balance" : "0"
     },
-    "tokensCount" : 0,
+    "tokensCount" : 50,
     "numFreePremiumMovies" : 15,
     "purchasedMovies" : [ ],
     "watchedMovies" : [ ],
@@ -218,6 +218,139 @@
     "ratedMovies" : [ ],
     "notifications" : [ ]
   }
+}, {
+  "error" : null,
+  "currentMoviesList" : [ {
+    "name" : "Jason's Lyric",
+    "year" : "1994",
+    "duration" : 103,
+    "genres" : [ "Drama", "Mystery", "Western" ],
+    "actors" : [ "Hoebart Lipscomb", "Romain Fehners", "Sam Restall", "Tildy Kenaway" ],
+    "countriesBanned" : [ "Romania", "China", "Finland" ],
+    "numLikes" : 0,
+    "rating" : 0.0,
+    "numRatings" : 0
+  } ],
+  "currentUser" : {
+    "credentials" : {
+      "name" : "Iancu",
+      "password" : "corega",
+      "accountType" : "standard",
+      "country" : "Japan",
+      "balance" : "0"
+    },
+    "tokensCount" : 50,
+    "numFreePremiumMovies" : 15,
+    "purchasedMovies" : [ ],
+    "watchedMovies" : [ ],
+    "likedMovies" : [ ],
+    "ratedMovies" : [ ],
+    "notifications" : [ ]
+  }
+}, {
+  "error" : null,
+  "currentMoviesList" : [ {
+    "name" : "Jason's Lyric",
+    "year" : "1994",
+    "duration" : 103,
+    "genres" : [ "Drama", "Mystery", "Western" ],
+    "actors" : [ "Hoebart Lipscomb", "Romain Fehners", "Sam Restall", "Tildy Kenaway" ],
+    "countriesBanned" : [ "Romania", "China", "Finland" ],
+    "numLikes" : 0,
+    "rating" : 0.0,
+    "numRatings" : 0
+  } ],
+  "currentUser" : {
+    "credentials" : {
+      "name" : "Iancu",
+      "password" : "corega",
+      "accountType" : "standard",
+      "country" : "Japan",
+      "balance" : "0"
+    },
+    "tokensCount" : 48,
+    "numFreePremiumMovies" : 15,
+    "purchasedMovies" : [ {
+      "name" : "Jason's Lyric",
+      "year" : "1994",
+      "duration" : 103,
+      "genres" : [ "Drama", "Mystery", "Western" ],
+      "actors" : [ "Hoebart Lipscomb", "Romain Fehners", "Sam Restall", "Tildy Kenaway" ],
+      "countriesBanned" : [ "Romania", "China", "Finland" ],
+      "numLikes" : 0,
+      "rating" : 0.0,
+      "numRatings" : 0
+    } ],
+    "watchedMovies" : [ ],
+    "likedMovies" : [ ],
+    "ratedMovies" : [ ],
+    "notifications" : [ ]
+  }
+}, {
+  "error" : null,
+  "currentMoviesList" : [ {
+    "name" : "Jason's Lyric",
+    "year" : "1994",
+    "duration" : 103,
+    "genres" : [ "Drama", "Mystery", "Western" ],
+    "actors" : [ "Hoebart Lipscomb", "Romain Fehners", "Sam Restall", "Tildy Kenaway" ],
+    "countriesBanned" : [ "Romania", "China", "Finland" ],
+    "numLikes" : 0,
+    "rating" : 0.0,
+    "numRatings" : 0
+  } ],
+  "currentUser" : {
+    "credentials" : {
+      "name" : "Iancu",
+      "password" : "corega",
+      "accountType" : "standard",
+      "country" : "Japan",
+      "balance" : "0"
+    },
+    "tokensCount" : 48,
+    "numFreePremiumMovies" : 15,
+    "purchasedMovies" : [ {
+      "name" : "Jason's Lyric",
+      "year" : "1994",
+      "duration" : 103,
+      "genres" : [ "Drama", "Mystery", "Western" ],
+      "actors" : [ "Hoebart Lipscomb", "Romain Fehners", "Sam Restall", "Tildy Kenaway" ],
+      "countriesBanned" : [ "Romania", "China", "Finland" ],
+      "numLikes" : 0,
+      "rating" : 0.0,
+      "numRatings" : 0
+    } ],
+    "watchedMovies" : [ {
+      "name" : "Jason's Lyric",
+      "year" : "1994",
+      "duration" : 103,
+      "genres" : [ "Drama", "Mystery", "Western" ],
+      "actors" : [ "Hoebart Lipscomb", "Romain Fehners", "Sam Restall", "Tildy Kenaway" ],
+      "countriesBanned" : [ "Romania", "China", "Finland" ],
+      "numLikes" : 0,
+      "rating" : 0.0,
+      "numRatings" : 0
+    } ],
+    "likedMovies" : [ ],
+    "ratedMovies" : [ ],
+    "notifications" : [ ]
+  }
+}, {
+  "error" : "Error",
+  "currentMoviesList" : [ ],
+  "currentUser" : null
+}, {
+  "error" : "Error",
+  "currentMoviesList" : [ ],
+  "currentUser" : null
+}, {
+  "error" : "Error",
+  "currentMoviesList" : [ ],
+  "currentUser" : null
+}, {
+  "error" : "Error",
+  "currentMoviesList" : [ ],
+  "currentUser" : null
 }, {
   "error" : null,
   "currentMoviesList" : [ {
@@ -235,8 +368,38 @@
     "year" : "2006",
     "duration" : 134,
     "genres" : [ "Thriller", "Western", "Mystery" ],
-    "actors" : [ "Hailey Evequot", "Fenelia Maryott", "Gloriane Haughton", "Evvie Asbery", "Camey Ingold" ],
+    "actors" : [ "Hailey Evequot", "Fenelia Maryott", "Gloriane Haughton", "Evvie Asbery" ],
     "countriesBanned" : [ "Indonesia", "China", "India" ],
+    "numLikes" : 0,
+    "rating" : 0.0,
+    "numRatings" : 0
+  }, {
+    "name" : "Penelope",
+    "year" : "2008",
+    "duration" : 166,
+    "genres" : [ "Fantasy", "Drama", "Thriller" ],
+    "actors" : [ "Elnore Neild", "Gay Cobbing", "Guntar Holton", "Merry Troni" ],
+    "countriesBanned" : [ "Azerbaijan", "China", "India" ],
+    "numLikes" : 0,
+    "rating" : 0.0,
+    "numRatings" : 0
+  }, {
+    "name" : "Kiwi!",
+    "year" : "2002",
+    "duration" : 82,
+    "genres" : [ "Western", "Mystery", "Romance" ],
+    "actors" : [ "Carleen Pidgeon", "Lois Gibling", "Colver Corss", "Mora Piotrkowski" ],
+    "countriesBanned" : [ "Brazil", "China", "Russia" ],
+    "numLikes" : 0,
+    "rating" : 0.0,
+    "numRatings" : 0
+  }, {
+    "name" : "Little Foxes, The",
+    "year" : "1999",
+    "duration" : 128,
+    "genres" : [ "Horror", "Action", "Thriller" ],
+    "actors" : [ "Coleen Verheijden", "Dean McCooke", "Melamie Griswaite", "Clementine Loding" ],
+    "countriesBanned" : [ "Brazil", "Philippines", "Poland" ],
     "numLikes" : 0,
     "rating" : 0.0,
     "numRatings" : 0
@@ -245,41 +408,18 @@
     "year" : "2003",
     "duration" : 106,
     "genres" : [ "Fantasy", "Thriller", "Mystery" ],
-    "actors" : [ "Holly Sandbrook", "Phyllys Lindsell", "Bendick Bointon", "Dani Duigenan", "Camey Ingold" ],
+    "actors" : [ "Holly Sandbrook", "Phyllys Lindsell", "Bendick Bointon", "Dani Duigenan" ],
     "countriesBanned" : [ "Indonesia", "Brazil", "Uganda" ],
     "numLikes" : 0,
     "rating" : 0.0,
     "numRatings" : 0
-  } ],
-  "currentUser" : {
-    "credentials" : {
-      "name" : "Iancu",
-      "password" : "corega",
-      "accountType" : "standard",
-      "country" : "Japan",
-      "balance" : "50"
-    },
-    "tokensCount" : 0,
-    "numFreePremiumMovies" : 15,
-    "purchasedMovies" : [ ],
-    "watchedMovies" : [ ],
-    "likedMovies" : [ ],
-    "ratedMovies" : [ ],
-    "notifications" : [ ]
-  }
-}, {
-  "error" : "Error",
-  "currentMoviesList" : [ ],
-  "currentUser" : null
-}, {
-  "error" : null,
-  "currentMoviesList" : [ {
-    "name" : "Little Foxes, The",
-    "year" : "1999",
-    "duration" : 128,
-    "genres" : [ "Horror", "Action", "Thriller" ],
-    "actors" : [ "Coleen Verheijden", "Dean McCooke", "Melamie Griswaite", "Clementine Loding" ],
-    "countriesBanned" : [ "Brazil", "Philippines", "Poland" ],
+  }, {
+    "name" : "Jason's Lyric",
+    "year" : "1994",
+    "duration" : 103,
+    "genres" : [ "Drama", "Mystery", "Western" ],
+    "actors" : [ "Hoebart Lipscomb", "Romain Fehners", "Sam Restall", "Tildy Kenaway" ],
+    "countriesBanned" : [ "Romania", "China", "Finland" ],
     "numLikes" : 0,
     "rating" : 0.0,
     "numRatings" : 0
@@ -314,6 +454,26 @@
     "rating" : 0.0,
     "numRatings" : 0
   }, {
+    "name" : "Belphecor: Curse of the Mummy (Belphégor - Le fantôme du Louvre)",
+    "year" : "1988",
+    "duration" : 178,
+    "genres" : [ "Drama", "Comedy", "Fantasy" ],
+    "actors" : [ "Florella Snoday", "Obie Dowsing", "Lynnea Denington", "Chrystal Evreux" ],
+    "countriesBanned" : [ "China", "Sweden", "Costa Rica" ],
+    "numLikes" : 0,
+    "rating" : 0.0,
+    "numRatings" : 0
+  }, {
+    "name" : "Endangered Species",
+    "year" : "1994",
+    "duration" : 79,
+    "genres" : [ "Mystery", "Fantasy", "Drama" ],
+    "actors" : [ "Morry Lunny", "Freda Werrett", "Jewel Gareisr", "Carine Cucinotta" ],
+    "countriesBanned" : [ "France", "South Africa", "Indonesia" ],
+    "numLikes" : 0,
+    "rating" : 0.0,
+    "numRatings" : 0
+  }, {
     "name" : "Celluloid Closet, The",
     "year" : "2002",
     "duration" : 155,
@@ -333,6 +493,66 @@
     "numLikes" : 0,
     "rating" : 0.0,
     "numRatings" : 0
+  }, {
+    "name" : "The Well-Digger's Daughter",
+    "year" : "1994",
+    "duration" : 141,
+    "genres" : [ "Crime", "Mystery", "Drama" ],
+    "actors" : [ "Fallon Sutcliff", "Maribeth Penas", "Codee Hooks", "Rubia Cotilard" ],
+    "countriesBanned" : [ "China", "South Africa", "India" ],
+    "numLikes" : 0,
+    "rating" : 0.0,
+    "numRatings" : 0
+  }, {
+    "name" : "Mistress",
+    "year" : "2012",
+    "duration" : 146,
+    "genres" : [ "Thriller", "Drama", "Fantasy" ],
+    "actors" : [ "Maighdiln Moroney", "Robinett Fennick", "Candice Hacquel", "Arlene Challoner" ],
+    "countriesBanned" : [ "Greece", "Czech Republic", "Malaysia" ],
+    "numLikes" : 0,
+    "rating" : 0.0,
+    "numRatings" : 0
+  }, {
+    "name" : "Indiana Jones and the Temple of Doom",
+    "year" : "2012",
+    "duration" : 88,
+    "genres" : [ "Drama", "Comedy", "Mystery" ],
+    "actors" : [ "Samuel Murtell", "Ansel Ryburn", "Rickert Farmery", "Ernst Malcher" ],
+    "countriesBanned" : [ "Nigeria", "Lithuania", "Burkina Faso" ],
+    "numLikes" : 0,
+    "rating" : 0.0,
+    "numRatings" : 0
+  }, {
+    "name" : "The Shawshank Redemption",
+    "year" : "1994",
+    "duration" : 166,
+    "genres" : [ "Drama", "Thriller" ],
+    "actors" : [ "Tim Robbins", "Morgan Freeman", "Bob Gunton", "William Sadler" ],
+    "countriesBanned" : [ "Azerbaijan", "China", "India" ],
+    "numLikes" : 0,
+    "rating" : 0.0,
+    "numRatings" : 0
+  }, {
+    "name" : "The Dark Knight",
+    "year" : "2008",
+    "duration" : 166,
+    "genres" : [ "Action", "Mistery", "Thriller" ],
+    "actors" : [ "Morgan Freeman", "Christian Bale", "Heath Ledger", "Michael Caine" ],
+    "countriesBanned" : [ "Azerbaijan", "China", "India" ],
+    "numLikes" : 0,
+    "rating" : 0.0,
+    "numRatings" : 0
+  }, {
+    "name" : "Pulp Fictiom",
+    "year" : "1994",
+    "duration" : 166,
+    "genres" : [ "Crime", "Drama", "Thriller" ],
+    "actors" : [ "John Travolta", "Uma Thurman", "Samuel L. Jackson", "Bruce Willis" ],
+    "countriesBanned" : [ "Azerbaijan", "China", "India" ],
+    "numLikes" : 0,
+    "rating" : 0.0,
+    "numRatings" : 0
   } ],
   "currentUser" : {
     "credentials" : {
@@ -340,97 +560,40 @@
       "password" : "corega",
       "accountType" : "standard",
       "country" : "Japan",
-      "balance" : "50"
+      "balance" : "0"
     },
-    "tokensCount" : 0,
+    "tokensCount" : 48,
     "numFreePremiumMovies" : 15,
-    "purchasedMovies" : [ ],
-    "watchedMovies" : [ ],
+    "purchasedMovies" : [ {
+      "name" : "Jason's Lyric",
+      "year" : "1994",
+      "duration" : 103,
+      "genres" : [ "Drama", "Mystery", "Western" ],
+      "actors" : [ "Hoebart Lipscomb", "Romain Fehners", "Sam Restall", "Tildy Kenaway" ],
+      "countriesBanned" : [ "Romania", "China", "Finland" ],
+      "numLikes" : 0,
+      "rating" : 0.0,
+      "numRatings" : 0
+    } ],
+    "watchedMovies" : [ {
+      "name" : "Jason's Lyric",
+      "year" : "1994",
+      "duration" : 103,
+      "genres" : [ "Drama", "Mystery", "Western" ],
+      "actors" : [ "Hoebart Lipscomb", "Romain Fehners", "Sam Restall", "Tildy Kenaway" ],
+      "countriesBanned" : [ "Romania", "China", "Finland" ],
+      "numLikes" : 0,
+      "rating" : 0.0,
+      "numRatings" : 0
+    } ],
     "likedMovies" : [ ],
     "ratedMovies" : [ ],
-    "notifications" : [ ]
+    "notifications" : [ {
+      "movieName" : "The Shawshank Redemption",
+      "message" : "ADD"
+    }, {
+      "movieName" : "Pulp Fictiom",
+      "message" : "ADD"
+    } ]
   }
-}, {
-  "error" : "Error",
-  "currentMoviesList" : [ ],
-  "currentUser" : null
-}, {
-  "error" : null,
-  "currentMoviesList" : [ ],
-  "currentUser" : {
-    "credentials" : {
-      "name" : "Iancu",
-      "password" : "corega",
-      "accountType" : "standard",
-      "country" : "Japan",
-      "balance" : "50"
-    },
-    "tokensCount" : 0,
-    "numFreePremiumMovies" : 15,
-    "purchasedMovies" : [ ],
-    "watchedMovies" : [ ],
-    "likedMovies" : [ ],
-    "ratedMovies" : [ ],
-    "notifications" : [ ]
-  }
-}, {
-  "error" : "Error",
-  "currentMoviesList" : [ ],
-  "currentUser" : null
-}, {
-  "error" : "Error",
-  "currentMoviesList" : [ ],
-  "currentUser" : null
-}, {
-  "error" : "Error",
-  "currentMoviesList" : [ ],
-  "currentUser" : null
-}, {
-  "error" : "Error",
-  "currentMoviesList" : [ ],
-  "currentUser" : null
-}, {
-  "error" : "Error",
-  "currentMoviesList" : [ ],
-  "currentUser" : null
-}, {
-  "error" : "Error",
-  "currentMoviesList" : [ ],
-  "currentUser" : null
-}, {
-  "error" : "Error",
-  "currentMoviesList" : [ ],
-  "currentUser" : null
-}, {
-  "error" : "Error",
-  "currentMoviesList" : [ ],
-  "currentUser" : null
-}, {
-  "error" : "Error",
-  "currentMoviesList" : [ ],
-  "currentUser" : null
-}, {
-  "error" : "Error",
-  "currentMoviesList" : [ ],
-  "currentUser" : null
-}, {
-  "error" : "Error",
-  "currentMoviesList" : [ ],
-  "currentUser" : null
-}, {
-  "error" : "Error",
-  "currentMoviesList" : [ ],
-  "currentUser" : null
-}, {
-  "error" : "Error",
-  "currentMoviesList" : [ ],
-  "currentUser" : null
-}, {
-  "error" : "Error",
-  "currentMoviesList" : [ ],
-  "currentUser" : null
-}, {
-  "error" : "Error",
-  "currentMoviesList" : [ ],
-  "currentUser" : null
 } ]

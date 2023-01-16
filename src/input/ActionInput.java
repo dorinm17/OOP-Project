@@ -10,6 +10,9 @@ public class ActionInput {
     private String count;
     private String movie;
     private int rate;
+    private String subscribedGenre;
+    private MovieInput addedMovie;
+    private String deletedMovie;
 
     private ActionInput() {
     }
@@ -24,6 +27,9 @@ public class ActionInput {
         this.count = action.getCount();
         this.movie = action.getMovie();
         this.rate = action.getRate();
+        this.subscribedGenre = action.getSubscribedGenre();
+        this.addedMovie = action.getAddedMovie();
+        this.deletedMovie = action.getDeletedMovie();
     }
 
     public final String getType() {
@@ -96,6 +102,30 @@ public class ActionInput {
 
     public final void setRate(final int rate) {
         this.rate = rate;
+    }
+
+    public final MovieInput getAddedMovie() {
+        return addedMovie;
+    }
+
+    public final void setAddedMovie(final MovieInput addedMovie) {
+        this.addedMovie = addedMovie;
+    }
+
+    public final String getDeletedMovie() {
+        return deletedMovie;
+    }
+
+    public final void setDeletedMovie(final String deletedMovie) {
+        this.deletedMovie = deletedMovie;
+    }
+
+    public final String getSubscribedGenre() {
+        return subscribedGenre;
+    }
+
+    public final void setSubscribedGenre(final String subscribedGenre) {
+        this.subscribedGenre = subscribedGenre;
     }
 
     @Override
