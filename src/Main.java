@@ -28,8 +28,6 @@ public final class Main {
 
         ObjectWriter objectWriter = objectMapper.writerWithDefaultPrettyPrinter();
         objectWriter.writeValue(new File(args[1]), output.getOutput());
-        objectWriter.writeValue(new File("checker/resources/out/basic_" + ct + ".json"),
-                output.getOutput());
         output.setInstance();
         ct++;
     }
